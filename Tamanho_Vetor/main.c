@@ -8,7 +8,7 @@ int main(){
 
     int tamanho_Vetor = sizeof(Vetor) / sizeof(Vetor[0]);
 
-    printf("O tamanho do vetor é de %d elementos", tamanho_Vetor);
+    printf("O tamanho do vetor é de %d elementos!", tamanho_Vetor);
 
     return 0;
 }

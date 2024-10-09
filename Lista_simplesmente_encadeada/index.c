@@ -1,37 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node
+struct Lista
 {
-    int data;
-    struct Node* proxNO; 
+    int valor;
+    struct Lista* proxNO; 
 };
-
-struct Node* CreateNode(int data){
-    struct Node* novoNO = (struct Node*)malloc(sizeof(struct Node));
-    novoNO -> data = data;
+//Cria o nó da Lista
+struct Lista* CreateNode(int valor){
+    struct Lista* novoNO = (struct Lista*)malloc(sizeof(struct Lista));
+    novoNO -> valor = valor;
     novoNO -> proxNO = NULL;
     return novoNO;
 };
 
-
-void inserirNoFinal(struct Node** cabeca, int data){
-    struct Node* novoNO = CreateNode(data);
+// insere ao final da lista um novo Nó(Registro)
+void inserirNoFinal(struct Lista** cabeca, int valor){
+    struct Lista* novoNO = CreateNode(valor);
     if(*cabeca == NULL){
         *cabeca = novoNO;
         return;
     }
-    struct Node* tempNode = *cabeca;
+    struct Lista* tempNode = *cabeca;
     while (tempNode->proxNO != NULL){
         tempNode = tempNode->proxNO;
     }
     tempNode->proxNO = novoNO;
 
 };
-void ImprimirNode(struct Node* cabeca){
-        struct Node* temp = cabeca;
+void ImprimirNode(struct Lista* cabeca){
+        struct Lista* temp = cabeca;
         while(temp != NULL){
-            printf("%d -> ", temp->data);
+            printf("%d -> ", temp->valor);
             temp =  temp->proxNO;
         }
         printf("Null\n");
@@ -40,7 +40,7 @@ void ImprimirNode(struct Node* cabeca){
 
 int main(){
 
-    struct Node* cabeca = NULL;
+    struct Lista* cabeca = NULL;
 
     inserirNoFinal( &cabeca, 10);
     ImprimirNode(cabeca);

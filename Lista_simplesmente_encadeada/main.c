@@ -3,34 +3,34 @@
 #include <stdlib.h>
 
 //Estrutura de cada Nó
-struct Node{
-    int data;
-    struct Node* next;
+struct Lista{
+    int valor;
+    struct Lista* next;
 };
 
 // função de criar nó
-struct Node* criaNO(int data){
-    struct Node* novoNO = (struct Node*)malloc(sizeof(struct Node));
-    novoNO -> data = data;
+struct Lista* criaNO(int data){
+    struct Lista* novoNO = (struct Lista*)malloc(sizeof(struct Lista));
+    novoNO -> valor = data;
     novoNO -> next = NULL;
     return novoNO;
 };
 
 //inserir no inicio
-void inserirInicio(struct Node** cabeca, int data){
-    struct Node* novoNO = criaNO(data);
+void inserirInicio(struct Lista** cabeca, int data){
+    struct Lista* novoNO = criaNO(data);
     novoNO -> next = *cabeca;
     *cabeca = novoNO;
 };
 
 // função de inserir Nó no final da lista 
-void inserirFinal(struct Node** cabeca, int data){
-    struct Node* novoNO = criaNO(data);
+void inserirFinal(struct Lista** cabeca, int data){
+    struct Lista* novoNO = criaNO(data);
     if(*cabeca == NULL){
         *cabeca = novoNO;
         return;
     }
-    struct Node* temp = *cabeca;
+    struct Lista* temp = *cabeca;
     while (temp->next != NULL){
         temp = temp->next;
     }
@@ -38,27 +38,27 @@ void inserirFinal(struct Node** cabeca, int data){
 };
 
 //função: inserir nó no meio (após um valor especifico)
-void inserirMeio(struct Node* cabeca, int value, int data){
-    struct Node* temp = cabeca;
+void inserirMeio(struct Lista* cabeca, int value, int data){
+    struct Lista* temp = cabeca;
 
     //procurar o valor da lista na lista 
-    while(temp != NULL && temp->data != value ){
+    while(temp != NULL && temp->valor != value ){
         temp = temp->next;
     }
 
     // se o valor foi encontrado, insere o novo Nó
     if(temp != NULL){
-        struct Node* novoNO = criaNO(data);
+        struct Lista* novoNO = criaNO(data);
         novoNO->next = temp->next;
         temp->next = novoNO;
     }else {
         printf("O valor %d não foi encontrado na lista.\n", value);
     }
 };
-    void ListarNO(struct Node* cabeca){
-        struct Node* temp = cabeca;
+    void ListarNO(struct Lista* cabeca){
+        struct Lista* temp = cabeca;
         while(temp != NULL){
-            printf("%d -> ", temp->data);
+            printf("%d -> ", temp->valor);
             temp =  temp->next;
         }
         printf("Null\n");
@@ -67,7 +67,7 @@ void inserirMeio(struct Node* cabeca, int value, int data){
 
 
 int main() {
-   struct Node* cabeca = NULL;
+   struct Lista* cabeca = NULL;
 
     // Inserindo n�s no in�cio
     inserirInicio(&cabeca, 10);
